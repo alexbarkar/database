@@ -136,4 +136,18 @@ class Kohana_DB {
 		return new Database_Expression($string, $parameters);
 	}
 
+    /**
+     * Get last insert id.
+     *
+     * @return int returns last insert id. 0 if there were no INSERT query before.
+     */
+    public static function last_insert_id()
+    {
+        /**
+         * @var $result  Database_Result
+         */
+        $result = DB::query(Database::SELECT, 'SELECT LAST_INSERT_ID() as last_insert_id')->execute();
+        return $result->get('last_insert_id');
+    }
+
 } // End DB
